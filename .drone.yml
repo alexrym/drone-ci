@@ -1,0 +1,47 @@
+---
+kind: pipeline
+type: docker
+name: build
+
+steps:
+  - name: build
+    image: maven:3.6-jdk-11
+    commands:
+    - mvn package
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+type: ssh
+name: test
+
+server:
+  host:
+    from_secret: deploy-server
+
+  user: deploy
+  password: password
+
+steps:
+  - name: deploy
+    commands:
+      - echo "hello world"
+      - pwd
+      - export KUBECONFIG=/home/deploy/config
+      - kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+      - sleep 10
+      - kubectl get pod --all-namespaces
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+
+
