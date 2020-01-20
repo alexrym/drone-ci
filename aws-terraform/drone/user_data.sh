@@ -40,3 +40,19 @@ sudo docker run -d \
   --restart always \
   --name runner \
   drone/drone-runner-ssh
+
+sudo docker run -d \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -e DRONE_RPC_PROTO=http \
+  -e DRONE_RPC_HOST=${DRONE_RPC_HOST} \
+  -e DRONE_RPC_SECRET=${DRONE_RPC_SECRET} \
+  -e DRONE_RUNNER_CAPACITY=1 \
+  -e DRONE_LOGS_DEBUG=true \
+  -e DRONE_TRACE=true \
+  -e DRONE_RPC_DUMP_HTTP=true \
+  -e DRONE_RPC_DUMP_HTTP_BODY=true \
+  -e DRONE_UI_USERNAME=${DRONE_UI_USERNAME} \
+  -e DRONE_UI_PASSWORD=${DRONE_UI_PASSWORD} \
+  -p 3001:3001 \
+  --restart always \
+  drone/drone-runner-docker
