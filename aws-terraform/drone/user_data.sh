@@ -10,9 +10,9 @@ sudo docker run \
   --volume=/var/lib/drone:/data \
   --env=DRONE_AGENTS_ENABLED=true \
   --env=DRONE_GITHUB_SERVER=https://github.com \
-  --env=DRONE_GITHUB_CLIENT_ID=b86926c525473db96cb8 \
-  --env=DRONE_GITHUB_CLIENT_SECRET=adab6f88101678bcd9b9c61c7d85e4295abb2694 \
-  --env=DRONE_RPC_SECRET=1qazXSW@ \
+  --env=DRONE_GITHUB_CLIENT_ID=${DRONE_GITHUB_CLIENT_ID} \
+  --env=DRONE_GITHUB_CLIENT_SECRET=${DRONE_GITHUB_CLIENT_SECRET} \
+  --env=DRONE_RPC_SECRET=${DRONE_RPC_SECRET} \
   --env=DRONE_SERVER_HOST=${DRONE_RPC_HOST} \
   --env=DRONE_SERVER_PROTO=https \
   --env=DRONE_LOGS_DEBUG=true \
@@ -28,14 +28,14 @@ sudo docker run -d \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e DRONE_RPC_PROTO=http \
   -e DRONE_RPC_HOST=${DRONE_RPC_HOST} \
-  -e DRONE_RPC_SECRET=1qazXSW@ \
+  -e DRONE_RPC_SECRET=${DRONE_RPC_SECRET} \
   -e DRONE_RUNNER_CAPACITY=1 \
   -e DRONE_LOGS_DEBUG=true \
   -e DRONE_TRACE=true \
   -e DRONE_RPC_DUMP_HTTP=true \
   -e DRONE_RPC_DUMP_HTTP_BODY=true \
-  -e DRONE_UI_USERNAME=root \
-  -e DRONE_UI_PASSWORD=root \
+  -e DRONE_UI_USERNAME=${DRONE_UI_USERNAME} \
+  -e DRONE_UI_PASSWORD=${DRONE_UI_PASSWORD} \
   -p 3000:3000 \
   --restart always \
   --name runner \
