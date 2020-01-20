@@ -12,5 +12,5 @@ sudo minikube start --extra-config=kubeadm.ignore-preflight-errors=NumCPU --forc
 sudo adduser deploy --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
 sudo echo "deploy:password" | sudo chpasswd
 sudo usermod -aG sudo deploy
-sudo sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/s sh/sshd_config
+sudo sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 sudo systemctl restart ssh
