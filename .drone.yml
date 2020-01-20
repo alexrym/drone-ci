@@ -32,8 +32,8 @@ steps:
   - name: deploy
     commands:
       - export KUBECONFIG=/home/deploy/config
-      - kubectl apply -f https://k8s.io/examples/application/deployment.yaml
-      - sleep 10
+#      - kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+#      - sleep 10
       - kubectl get pod --all-namespaces
 
 trigger:
